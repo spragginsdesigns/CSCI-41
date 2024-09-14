@@ -64,17 +64,17 @@ This guide provides a step-by-step process to copy files between your class serv
     └── ... (future labs)
 - **Local Windows Directory**: `C:\Users\Owner\Documents\Github_Repositories\CSCI-41`
   - This is where you'll create local copies of each lab folder
-    C:\Users\Owner\Documents\Github_Repositories\CSCI-41\
-    ├── lab01\
+    C:\Users\Owner\Documents\Github_Repositories\CSCI-41
+    ├── lab01
     │ ├── file1.cpp
     │ └── file2.h
-    ├── lab02\
+    ├── lab02
     │ ├── assignment1.cpp
     │ └── assignment2.h
-    ├── lab03\
+    ├── lab03
     │ ├── project.cpp
     │ └── header.h
-    ├── lab04\
+    ├── lab04
     │ ├── exercise1.cpp
     │ └── exercise2.h
     └── ... (future labs)
@@ -108,7 +108,7 @@ mkdir -p lab4
 Use `scp` to securely copy the contents of the `lab04` directory from the class server to your local `lab4` directory:
 
 ```bash
-scp -r 'spraggins_0524626@5.75.133.4:~/labs/lab04/' ./lab4/
+scp -r 'spraggins_0524626@5.75.133.4:~/labs/lab04/.' ./lab4/
 ```
 
 - The `-r` flag enables recursive copying for directories.
@@ -139,7 +139,7 @@ C:\Users\Owner\Documents\Github_Repositories\CSCI-41\lab4
 After editing, use `scp` to copy the files back to the class server's `lab04` directory:
 
 ```bash
-scp -r ./lab4/ 'spraggins_0524626@5.75.133.4:~/labs/lab04/'
+scp -r ./lab4/. 'spraggins_0524626@5.75.133.4:~/labs/lab04/'
 ```
 
 **Explanation:**
