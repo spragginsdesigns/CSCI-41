@@ -1,0 +1,58 @@
+# Compiled binaries
+binaryVsLinear
+tryStack
+tryQueue
+tryPriorityQueue
+tryList
+tryMap
+segfault
+linkedListTests
+snake
+testDeque
+testStack
+testVec
+calcReceipt
+
+# Object files
+*.o
+
+# Makefile output
+*.d
+
+# Editor-specific files
+.vscode/
+.idea/
+
+# Temporary files
+*.tmp
+*.swp
+*~
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Executable files (without extension)
+*
+!*.*
+!*/
+
+# Exception for Makefile
+!Makefile
+
+# C++ specific
+*.out
+*.app
+
+# Python specific (if you have any Python scripts)
+__pycache__/
+*.py[cod]
+
+# Backup files
+*.bak
+
+# Log files
+*.log
+
+# Core dumps
+core
