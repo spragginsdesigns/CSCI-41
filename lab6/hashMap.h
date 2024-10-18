@@ -37,34 +37,48 @@ private:
 // outside of this .h file, but we're gonna break the rules for simplicity
 
 unsigned int Hash(const int& i) {
-  // FІХΜE: implement a hash function for ints here
-  // How can you turn an int into an int? :)
-  return _____________;
+  return static_cast<unsigned int>(i);
 }
 
-// FІХΜE: implement a hash function for chars here
+// FІХМE: implement a hash function for chars here
 // How can you turn a char into an int?
 
-// FІХΜE: implement a hash function for std::strings here
+unsigned int Hash(const char& c) {
+  return static_cast<unsigned int>(c);
+}
+
+// FІХМE: implement a hash function for std::strings here
 // How can you turn a string into an int?
 // Hint: combine your char hashes
 
-// FІХΜE: implement a hash function for doubles here
+unsigned int Hash(const std::string& s) {
+  unsigned int hash = 0;
+  for (char c : s) {
+    hash = hash * 31 + Hash(c);
+  }
+  return hash;
+}
+
+// FІХМE: implement a hash function for doubles here
 // How can you turn a double into an int?
 // Hint: one method is to convert the double to a string
 
+unsigned int Hash(const double& d) {
+  return Hash(std::to_string(d));
+}
 
 
-// FІХΜE: implement the constructor
+
+// FІХМE: implement the constructor
   // Use the constructor's tableSize parameter to initialize the table
   // vector to have size tableSize.
   // Hint: you can call one of vector's constructors to do this
 template <class K, class V>
-HashMap<K, V>::HashMap(int tableSize) {}
+HashMap<K, V>::HashMap(int tableSize) : table(tableSize) {}
 
 
 
-// FІХΜE: implement the insert method
+// FІХМE: implement the insert method
   // use the Hash() function that we assume exists for Ks to figure
   // out where this key should go. Remember that the hash is not
   // itself an index into the table yet, so you'll need to shrink down
@@ -75,8 +89,37 @@ HashMap<K, V>::HashMap(int tableSize) {}
 
 
 
-// FІХΜE: implement the search method
+// FІХМE: implement the search method
   // return a pointer to the value for a given key, or nullptr if the key doesn't exist
+
+template <class K, class V>
+V* HashMap<K, V>::search(const K& key) {
+  unsigned int hash = Hash(key) % table.size();
+
+  for (auto& item : table[hash]) {
+    if (item.key == key) {
+      return &item.val;
+    }
+  }
+
+  return nullptr;
+}
+
+template <class K, class V>
+void HashMap<K, V>::insert(const K& key, const V& val) {
+  unsigned int hash = Hash(key) % table.size();
+
+  for (auto& item : table[hash]) {
+    if (item.key == key) {
+      item.val = val;
+      return;
+    }
+  }
+
+  table[hash].push_back({key, val});
+}
+
+
 
 
 #endif /* HASHMAP_H */

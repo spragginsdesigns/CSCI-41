@@ -5,12 +5,14 @@ using namespace std;
 
 void hashMapTest1();
 void hashMapTest2();
+void hashMapTest3();
+void hashMapTest4();
 
 int main() {
   hashMapTest1();
   hashMapTest2();
-
-  // FІХΜE: add two more tests
+  hashMapTest3();
+  hashMapTest4();
 
   return 0;
 }
@@ -54,4 +56,40 @@ void hashMapTest2() {
   }
 
   assertTrue(is_correct, "HashMap comprehensive test");
+}
+
+void hashMapTest3() {
+  HashMap<string, int> table(10);
+  bool is_correct = true;
+
+  table.insert("apple", 1);
+  table.insert("banana", 2);
+  table.insert("cherry", 3);
+
+  if (table.search("apple") == nullptr || *table.search("apple") != 1) is_correct = false;
+  if (table.search("banana") == nullptr || *table.search("banana") != 2) is_correct = false;
+  if (table.search("cherry") == nullptr || *table.search("cherry") != 3) is_correct = false;
+  if (table.search("date") != nullptr) is_correct = false;
+
+  assertTrue(is_correct, "HashMap<string, int> test");
+}
+
+void hashMapTest4() {
+  HashMap<double, string> table(7);
+  bool is_correct = true;
+
+  table.insert(3.14, "pi");
+  table.insert(2.71, "e");
+  table.insert(1.41, "sqrt(2)");
+
+  if (table.search(3.14) == nullptr || *table.search(3.14) != "pi") is_correct = false;
+  if (table.search(2.71) == nullptr || *table.search(2.71) != "e") is_correct = false;
+  if (table.search(1.41) == nullptr || *table.search(1.41) != "sqrt(2)") is_correct = false;
+  if (table.search(1.0) != nullptr) is_correct = false;
+
+  // Test updating an existing key
+  table.insert(3.14, "PI");
+  if (table.search(3.14) == nullptr || *table.search(3.14) != "PI") is_correct = false;
+
+  assertTrue(is_correct, "HashMap<double, string> test with update");
 }
